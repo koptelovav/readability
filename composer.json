@@ -1,5 +1,5 @@
 {
-	"name": "fivefilters/php-wp_automatic_Readability",
+	"name": "koptelovav/readability",
 	"type": "library",
 	"description": "Automatic article extraction from HTML",
 	"keywords": ["article extraction","content extraction","extraction","article","content","html"],

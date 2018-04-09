@@ -1,4 +1,10 @@
 <?php
+
+namespace Readability;
+
+use DOMElement;
+use DOMDocument;
+
 /**
 * JavaScript-like HTML DOM Element
 *
@@ -32,7 +38,7 @@
 * @author Keyvan Minoukadeh - http://www.keyvan.net - keyvan@keyvan.net
 * @see http://fivefilters.org (the project this was written for)
 */
-class wp_automatic_JSLikeHTMLElement extends DOMElement
+class JSLikeHTMLElement extends DOMElement
 {
 	/**
 	* Used for setting innerHTML like it's done in JavaScript:

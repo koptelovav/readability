@@ -1,4 +1,11 @@
 <?php
+
+namespace Readability;
+
+use DOMElement;
+use DOMDocument;
+use DOMXPath;
+
 /** 
 * Arc90's wp_automatic_Readability ported to PHP for FiveFilters.org
 * Based on wp_automatic_Readability.js version 1.7.1 (without multi-page support)
@@ -43,28 +50,7 @@
 * existing DOMElement objects without passing an entire HTML document to 
 * be parsed.
 */
-
-// This class allows us to do JavaScript like assignements to innerHTML
-require_once(dirname(__FILE__).'/wp_automatic_JSLikeHTMLElement.php');
-
-// Alternative usage (for testing only!)
-// uncomment the lines below and call wp_automatic_Readability.php in your browser 
-// passing it the URL of the page you'd like content from, e.g.:
-// wp_automatic_Readability.php?url=http://medialens.org/alerts/09/090615_the_guardian_climate.php
-
-/*
-if (!isset($_GET['url']) || $_GET['url'] == '') {
-	die('Please pass a URL to the script. E.g. wp_automatic_Readability.php?url=bla.com/story.html');
-}
-$url = $_GET['url'];
-if (!preg_match('!^https?://!i', $url)) $url = 'http://'.$url;
-$html = file_get_contents($url);
-$r = new wp_automatic_Readability($html, $url);
-$r->init();
-  echo $r->articleContent->innerHTML;
-*/
-
-class wp_automatic_Readability
+class Readability
 {
 	public $version = '1.7.1-without-multi-page';
 	public $convertLinksToFootnotes = false;
@@ -135,7 +121,7 @@ class wp_automatic_Readability
 			$this->dom->preserveWhiteSpace = false;
 			@$this->dom->loadHTML($html);
 		}
-		$this->dom->registerNodeClass('DOMElement', 'wp_automatic_JSLikeHTMLElement');
+		$this->dom->registerNodeClass(DOMElement::class, JSLikeHTMLElement::class);
 	}
 
 	/**
